@@ -34,14 +34,14 @@ public class PostService {
     }
 
     public Post createPost(PostCreateRequest createPost) {
-        userService.getOneUser(createPost.getUserId()).ifPresentOrElse(foundUser -> {
+        return userService.getOneUser(createPost.getUserId()).map(foundUser -> {
             Post newPost = new Post();
-            newPost.setText(null);
+            newPost.setText(createPost.getText());
+            newPost.setTitle(createPost.getTitle());
+            newPost.setUser(foundUser);
             return postRepository.save(newPost);
-        },
-                () -> {
-                    return null;
-                });
+        })
+                .orElse(null);
 
     }
 
