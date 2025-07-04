@@ -42,7 +42,10 @@ public class PostService {
             return postRepository.save(newPost);
         })
                 .orElse(null);
+    }
 
+    public Post updatePost(Long postId, PostCreateRequest createPost) {
+        userService
     }
 
 }

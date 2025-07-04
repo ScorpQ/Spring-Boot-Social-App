@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,4 +39,8 @@ public class PostController {
         return postService.createPost(newPost);
     }
 
+    @PutMapping("/posts")
+    public Post updatePost(@RequestParam("postId") Long postId, @RequestBody PostCreateRequest updatePost) {
+        return postService.updatePost(postId, updatePost);
+    }
 }
