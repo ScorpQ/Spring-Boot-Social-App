@@ -1,6 +1,5 @@
 package group.artifact.services;
 
-import java.lang.foreign.Linker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import group.artifact.dto.PostCreateRequest;
 import group.artifact.entities.Post;
 import group.artifact.repository.PostRepository;
-import group.artifact.repository.UserRepository;
 
 @Service
 public class PostService {
@@ -45,7 +43,14 @@ public class PostService {
     }
 
     public Post updatePost(Long postId, PostCreateRequest createPost) {
-        userService
+        Optional<Post> targetPost = postRepository.findById(postId);
+        if (targetPost.isPresent()) {
+            Post post = targetPost.get();
+            post.setText(createPost.getText());
+            post.setTitle(createPost.getTitle());
+            return postRepository.save(post);
+        }
+        return null;
     }
 
 }
