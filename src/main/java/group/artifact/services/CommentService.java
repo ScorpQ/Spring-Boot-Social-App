@@ -8,9 +8,13 @@ import group.artifact.repository.CommentRepository;
 public class CommentService {
 
     public CommentRepository commentRepository;
+    public UserService userService;
+    public PostService postService;
 
-    public CommentService(CommentRepository commentRepository) {
+    public CommentService(CommentRepository commentRepository, UserService userService, PostService postService) {
         this.commentRepository = commentRepository;
+        this.userService = userService;
+        this.postService = postService;
     }
 
     public List<Comment> getAllComments(Optional<Long> userId, Optional<String> postId) {
@@ -23,7 +27,6 @@ public class CommentService {
         } else { // postId and userId is not present
             return commentRepository.findAll();
         }
-        return null;
     }
 
     public Comment getComment(String commentId) {

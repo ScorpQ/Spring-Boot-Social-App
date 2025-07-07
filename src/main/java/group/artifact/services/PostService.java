@@ -31,6 +31,9 @@ public class PostService {
         return postRepository.findById(postId).orElse(null);
     }
 
+    // Yeni bir post create ederken DTO yapısı kullandık çünkü
+    // Post nesnesinde user_id tutulmuyor. DTO ile işi çözmeye çalıştık.
+    // Ama aynı durumu Comment nesnesi için kod ile çözdük
     public Post createPost(PostCreateRequest createPost) {
         return userService.getOneUser(createPost.getUserId()).map(foundUser -> {
             Post newPost = new Post();
