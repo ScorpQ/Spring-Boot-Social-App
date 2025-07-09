@@ -40,11 +40,13 @@ public class UserService {
         return null;
     }
 
-    public void deleteOneUser(Long userId) {
+    public String deleteOneUser(Long userId) {
         User deletedUser = this.getUser(userId);
         if (deletedUser != null) {
             userRepository.deleteById(userId);
+            return "Deleted";
         }
 
+        return "No User";
     }
 }

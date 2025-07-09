@@ -11,32 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import group.artifact.entities.User;
-import group.artifact.repository.UserRepository;
 import group.artifact.services.UserService;
 
 @RestController // Bunu test et postmande, olmadan retunr edilen data bir html templati mi
                 // sunuyor.
 public class UserController {
 
-    private final UserRepository userRepository;
     private final UserService userService;
 
-    UserController(UserRepository userRepository, UserService userService) {
-        this.userRepository = userRepository;
+    UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/user")
+    @PostMapping("/createUser")
     public User createNewUser(@RequestBody User newUser) {
         return userService.createNewUser(newUser);
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/getOneUser/{userId}")
     public User getOneUser(@PathVariable Long userId) {
         // getReferenceById kullandığın için optinal bir yapı return etmiyor
         // bu yüzden .orElse() tarzı error handle etme methodu kullanamiyorsun.
@@ -45,14 +42,14 @@ public class UserController {
         return userService.getUser(userId);
     }
 
-    @PutMapping("/user/{userId}")
+    @PutMapping("/updateUser/{userId}")
     public User updateOneUser(@RequestBody User user, @PathVariable Long userId) {
         return userService.updateOneUser(user, userId);
     }
 
-    @DeleteMapping("/user/{userId}")
-    public void deleteOne(@PathVariable Long userId) {
-        userRepository.deleteById(userId);
+    @DeleteMapping("/deleteUser/{userId}")
+    public String deleteOne(@PathVariable Long userId) {
+        return userService.deleteOneUser(userId);
     }
 
 }
