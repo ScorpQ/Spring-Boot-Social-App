@@ -25,7 +25,7 @@ public class PostController {
     }
 
     @GetMapping("/postss")
-    public Post getPost(@RequestParam("postId") Long postId) {
+    public Post getPost(@RequestParam("postId") String postId) {
         return postService.getPost(postId);
     }
 
@@ -40,7 +40,7 @@ public class PostController {
     }
 
     @PutMapping("/posts")
-    public Post updatePost(@RequestParam("postId") Long postId, @RequestBody PostCreateRequest updatePost) {
+    public Post updatePost(@RequestParam("postId") String postId, @RequestBody PostCreateRequest updatePost) {
         return postService.updatePost(postId, updatePost);
     }
 }

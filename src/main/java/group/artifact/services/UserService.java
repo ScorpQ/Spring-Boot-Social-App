@@ -17,7 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUser() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -25,8 +25,8 @@ public class UserService {
         return userRepository.saveAndFlush(newUser);
     }
 
-    public Optional<User> getOneUser(Long userId) {
-        return userRepository.findById(userId);
+    public User getUser(Long userId) {
+        return userRepository.findById(userId).orElse(null);
     }
 
     public User updateOneUser(User userData, Long userId) {
@@ -41,12 +41,10 @@ public class UserService {
     }
 
     public void deleteOneUser(Long userId) {
-        this.getOneUser(userId).ifPresentOrElse(
-                foundUser -> {
-                    userRepository.deleteById(userId);
-                },
-                () -> {
-                    throw new RuntimeException("Kullanıcı bulunamadı! ID: " + userId);
-                });
+        User deletedUser = this.getUser(userId);
+        if (deletedUser != null) {
+            userRepository.deleteById(userId);
+        }
+
     }
 }

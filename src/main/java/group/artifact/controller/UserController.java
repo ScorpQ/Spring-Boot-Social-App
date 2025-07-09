@@ -1,7 +1,6 @@
 package group.artifact.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,7 @@ public class UserController {
 
     @GetMapping("/user")
     public List<User> getAllUsers() {
-        return userService.getAllUser();
+        return userService.getAllUsers();
     }
 
     @PostMapping("/user")
@@ -38,12 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}")
-    public Optional<User> getOneUser(@PathVariable Long userId) {
+    public User getOneUser(@PathVariable Long userId) {
         // getReferenceById kullandığın için optinal bir yapı return etmiyor
         // bu yüzden .orElse() tarzı error handle etme methodu kullanamiyorsun.
         // Try catch falan yapman lazım ama ondan önce hata almaya çalış ne oluyor
         // öğren.
-        return userService.getOneUser(userId);
+        return userService.getUser(userId);
     }
 
     @PutMapping("/user/{userId}")

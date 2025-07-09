@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import group.artifact.dto.PostCreateRequest;
 import group.artifact.entities.Post;
 import group.artifact.repository.PostRepository;
+import group.artifact.entities.User;
 
 @Service
 public class PostService {
@@ -27,7 +28,7 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public Post getPost(Long postId) {
+    public Post getPost(String postId) {
         return postRepository.findById(postId).orElse(null);
     }
 
@@ -35,17 +36,19 @@ public class PostService {
     // Post nesnesinde user_id tutulmuyor. DTO ile işi çözmeye çalıştık.
     // Ama aynı durumu Comment nesnesi için kod ile çözdük
     public Post createPost(PostCreateRequest createPost) {
-        return userService.getOneUser(createPost.getUserId()).map(foundUser -> {
-            Post newPost = new Post();
-            newPost.setText(createPost.getText());
-            newPost.setTitle(createPost.getTitle());
-            newPost.setUser(foundUser);
-            return postRepository.save(newPost);
-        })
-                .orElse(null);
+        User user = userService.getUser(createPost.getUserId());
+        if (user == null) {
+            throw new RuntimeException("Kullanıcı bulunamadı! ID: " + createPost.getUserId());
+        }
+
+        Post newPost = new Post();
+        newPost.setText(createPost.getText());
+        newPost.setTitle(createPost.getTitle());
+        newPost.setUser(user);
+        return postRepository.save(newPost);
     }
 
-    public Post updatePost(Long postId, PostCreateRequest createPost) {
+    public Post updatePost(String postId, PostCreateRequest createPost) {
         Optional<Post> targetPost = postRepository.findById(postId);
         if (targetPost.isPresent()) {
             Post post = targetPost.get();
