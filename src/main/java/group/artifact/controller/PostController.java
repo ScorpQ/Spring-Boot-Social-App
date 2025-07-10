@@ -24,22 +24,22 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/postss")
+    @GetMapping("/getOnePost")
     public Post getPost(@RequestParam("postId") String postId) {
         return postService.getPost(postId);
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/getAllOrUserPosts")
     public List<Post> getAllPosts(@RequestParam("userId") Optional<Long> userId) {
         return postService.getAllPosts(userId);
     }
 
-    @PostMapping("/posts")
+    @PostMapping("/createPost")
     public Post createPost(@RequestBody PostCreateRequest newPost) {
         return postService.createPost(newPost);
     }
 
-    @PutMapping("/posts")
+    @PutMapping("/updatePost")
     public Post updatePost(@RequestParam("postId") String postId, @RequestBody PostCreateRequest updatePost) {
         return postService.updatePost(postId, updatePost);
     }
