@@ -3,16 +3,17 @@ package group.artifact.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import group.artifact.entities.Comment;
 import group.artifact.services.CommentService;
 
-@Controller
+@RestController
 // @RestController
 public class CommentController {
 
@@ -34,8 +35,10 @@ public class CommentController {
         return commentService.getComment(commentId);
     }
 
-    @PostMapping("/comments")
-    public Comment getCommentsss(@PathVariable String commentId) {
-        return commentService.getComment(commentId);
-    }
+    /*
+     * @PostMapping("/comments")
+     * public Comment createComment(@RequestBody Comment newComment) {
+     * return commentService.createComment(newComment);
+     * }
+     */
 }
