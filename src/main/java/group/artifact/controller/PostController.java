@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import group.artifact.dto.PostCreateRequest;
+import group.artifact.dto.PostResponse;
 import group.artifact.entities.Post;
 import group.artifact.services.PostService;
 
@@ -30,7 +31,7 @@ public class PostController {
     }
 
     @GetMapping("/getAllOrUserPosts")
-    public List<Post> getAllPosts(@RequestParam("userId") Optional<Long> userId) {
+    public List<PostResponse> getAllPosts(@RequestParam("userId") Optional<Long> userId) {
         return postService.getAllPosts(userId);
     }
 

@@ -18,4 +18,24 @@ public class PostResponse {
         this.text = entity.getText();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
 }

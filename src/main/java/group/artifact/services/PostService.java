@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import group.artifact.dto.PostCreateRequest;
+import group.artifact.dto.PostResponse;
 import group.artifact.entities.Post;
 import group.artifact.repository.PostRepository;
 import group.artifact.entities.User;
@@ -21,11 +22,13 @@ public class PostService {
         this.userService = userService;
     }
 
-    public List<Post> getAllPosts(Optional<Long> userId) {
+    public List<PostResponse> getAllPosts(Optional<Long> userId) {
         if (userId.isPresent()) {
-            return postRepository.findByUserId(userId.get());
+            List<Post> findedPosts = postRepository.findByUserId(userId.get());
+            return findedPosts.stream().map(PostResponse::new).toList();
         }
-        return postRepository.findAll();
+        List<Post> findedPosts = postRepository.findAll();
+        return findedPosts.stream().map(PostResponse::new).toList();
     }
 
     public Post getPost(String postId) {
