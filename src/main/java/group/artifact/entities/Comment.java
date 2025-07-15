@@ -18,7 +18,7 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "comments")
 public class Comment {
 
     @Id

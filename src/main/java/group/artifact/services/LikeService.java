@@ -5,21 +5,24 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import group.artifact.entities.Like;
 import group.artifact.entities.User;
 import group.artifact.entities.Post;
 import group.artifact.dto.LikeResponse;
-import group.artifact.entities.Comment;
-import group.artifact.entities.Like;
-import group.artifact.repository.CommentRepository;
+import group.artifact.dto.LikeCreateRequest;
 import group.artifact.repository.LikeRepository;
 
 @Service
 public class LikeService {
 
     LikeRepository likeRepository;
+    UserService userService;
+    PostService postService;
 
-    LikeService(LikeRepository likeRepository) {
+    LikeService(LikeRepository likeRepository, UserService userService, PostService postService) {
         this.likeRepository = likeRepository;
+        this.userService = userService;
+        this.postService = postService;
     }
 
     public List<LikeResponse> getAllLikesWithParam(Optional<Long> userId, Optional<String> postId) {
@@ -40,11 +43,10 @@ public class LikeService {
     }
 
     public Like createOneLike(LikeCreateRequest request) {
-        User user = userService.getOneUserById(request.getUserId());
-        Post post = postService.getOnePostById(request.getPostId());
+        User user = userService.getUser(request.getUserId());
+        Post post = postService.getPost(request.getPostId());
         if (user != null && post != null) {
             Like likeToSave = new Like();
-            likeToSave.setId(request.getId());
             likeToSave.setPost(post);
             likeToSave.setUser(user);
             return likeRepository.save(likeToSave);
@@ -52,4 +54,7 @@ public class LikeService {
             return null;
     }
 
+    public void deleteOneLikeById(Long likeId) {
+        likeRepository.deleteById(likeId);
+    }
 }

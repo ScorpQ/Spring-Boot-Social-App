@@ -1,5 +1,7 @@
 package group.artifact.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Id;
@@ -26,11 +28,12 @@ public class Post {
     @JsonIgnore
     User user;
 
-    String title;
-
     @Lob
     @Column(columnDefinition = "text")
     String text;
+
+    Long likeCount;
+    String title;
 
     public String getId() {
         return id;
@@ -62,6 +65,10 @@ public class Post {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Long getLikeCounts() {
+        return likeCount;
     }
 
 }

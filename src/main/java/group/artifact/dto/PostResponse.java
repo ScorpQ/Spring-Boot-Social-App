@@ -9,6 +9,7 @@ public class PostResponse {
     String userName;
     String title;
     String text;
+    Long likeCount;
 
     public PostResponse(Post entity) {
         this.id = entity.getId();
@@ -16,6 +17,7 @@ public class PostResponse {
         this.userName = entity.getUser().getName();
         this.title = entity.getTitle();
         this.text = entity.getText();
+        this.likeCount = entity.getLikeCounts();
     }
 
     public String getId() {
