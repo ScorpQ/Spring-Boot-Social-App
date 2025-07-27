@@ -1,13 +1,15 @@
 package group.artifact.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import group.artifact.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByUserName(String userName);
+    User findByName(String name);
 
-    User findByUserId(Long userId);
+    Optional<User> findById(Long userId);
 
 }
