@@ -1,6 +1,5 @@
 package group.artifact.entities;
 
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
