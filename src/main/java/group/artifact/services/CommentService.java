@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import group.artifact.entities.User;
 import group.artifact.entities.Post;
+import group.artifact.dto.CommentCreateRequest;
 import group.artifact.entities.Comment;
 import group.artifact.repository.CommentRepository;
 
@@ -45,9 +46,9 @@ public class CommentService {
     // Post ve User nesnesinin tamamını değil.
     // Ama tam anlamak için Comment nesnesi kullanıp user_id ve post_id göndermeyi
     // deneyebilirsin.....
-    public Comment createComment(Comment newComment) {
-        User user = userService.getUser(newComment.getUser().getId());
-        Post post = postService.getPost(newComment.getPost().getId());
+    public Comment createComment(CommentCreateRequest newComment) {
+        User user = userService.getUser(newComment.getUserId());
+        Post post = postService.getPost(newComment.getPostId());
 
         if (user != null) {
             return newComment;

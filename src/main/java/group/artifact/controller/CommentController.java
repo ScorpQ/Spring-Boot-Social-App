@@ -35,10 +35,8 @@ public class CommentController {
         return commentService.getComment(commentId);
     }
 
-    /*
-     * @PostMapping("/comments")
-     * public Comment createComment(@RequestBody Comment newComment) {
-     * return commentService.createComment(newComment);
-     * }
-     */
+    @PostMapping("/comments")
+    public Comment createComment(@RequestBody Comment newComment) {
+        return commentService.createComment(newComment);
+    }
 }

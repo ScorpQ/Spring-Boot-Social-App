@@ -2,6 +2,8 @@ package group.artifact.entities;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -13,8 +15,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -29,7 +29,8 @@ public class Comment {
     @Column(columnDefinition = "text")
     private String text;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate // Otomatik kendisi ekler ama 
+                 //değişken Long tipinde olursa direkt milisaniye cinsinden tutar 
     private Date createDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
