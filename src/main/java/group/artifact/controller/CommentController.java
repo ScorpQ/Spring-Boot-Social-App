@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import group.artifact.dto.CommentCreateRequest;
 import group.artifact.entities.Comment;
 import group.artifact.services.CommentService;
 
@@ -36,7 +37,7 @@ public class CommentController {
     }
 
     @PostMapping("/comments")
-    public Comment createComment(@RequestBody Comment newComment) {
+    public Comment createComment(@RequestBody CommentCreateRequest newComment) {
         return commentService.createComment(newComment);
     }
 }

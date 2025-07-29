@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.events.CommentEvent;
 
 import group.artifact.entities.User;
 import group.artifact.entities.Post;
@@ -44,20 +45,19 @@ public class CommentService {
     // Post nesnesinde user_id tutulmuyordu. Aynı durum Comment nesnesi
     // için de geçerli Postmand'den sadece user_id ve post_id göndermemiz lazım
     // Post ve User nesnesinin tamamını değil.
-    // Ama tam anlamak için Comment nesnesi kullanıp user_id ve post_id göndermeyi
-    // deneyebilirsin.....
+    // Ama tam anlamak için CommentCreateRequest yerine Comment nesnesi
+    // kullanıp user_id ve post_id göndermeyi deneyebilirsin.....
     public Comment createComment(CommentCreateRequest newComment) {
         User user = userService.getUser(newComment.getUserId());
         Post post = postService.getPost(newComment.getPostId());
 
-        if (user != null) {
-            return newComment;
+        if (user != null && post != null) {
+            Comment commentToSave = new Comment();
+            commentToSave.setPost(post);
+            commentToSave.setUser(user);
+            commentToSave.setText(newComment.getText());
+            return commentRepository.save(commentToSave);
         }
-        if (post != null) {
-            return newComment;
-        }
-
-        commentRepository.save(newComment);
-        return newComment;
+        return null;
     }
 }
