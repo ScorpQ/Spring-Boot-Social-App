@@ -1,6 +1,12 @@
 package group.artifact.entities;
 
+import java.time.Instant;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -8,6 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +24,10 @@ public class User {
     private String email;
     private String password;
     private String avatar_url;
+    
+    @CreatedDate
+    private Instant createDate;
+    
 
     public Long getId() {
         return id;
@@ -56,5 +67,13 @@ public class User {
 
     public void setAvatar(String avatar_url) {
         this.avatar_url = avatar_url;
+    }
+
+    public Instant getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Instant createDate) {
+        this.createDate = createDate;
     }
 }

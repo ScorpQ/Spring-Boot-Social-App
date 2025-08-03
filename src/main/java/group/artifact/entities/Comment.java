@@ -1,8 +1,5 @@
 package group.artifact.entities;
 
-import java.time.Instant;
-import java.util.Date;
-
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -63,11 +60,11 @@ public class Comment {
         this.text = text;
     }
 
-    public Instant getCreateDate() {
+    public Long getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Instant createDate) {
+    public void setCreateDate(Long createDate) {
         this.createDate = createDate;
     }
 
