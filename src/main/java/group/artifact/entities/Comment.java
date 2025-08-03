@@ -34,7 +34,7 @@ public class Comment {
     private String text;
 
     @CreatedDate
-    private Instant createDate;
+    private Long createDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")

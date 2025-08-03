@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import group.artifact.entities.Post;
 import group.artifact.entities.User;
 import group.artifact.services.UserService;
 
@@ -40,6 +42,12 @@ public class UserController {
         // Try catch falan yapman lazım ama ondan önce hata almaya çalış ne oluyor
         // öğren.
         return userService.getUser(userId);
+    }
+
+
+    @GetMapping("/activity")
+    public List<Post> getActivity(@RequestParam Long userId) {
+        return userService.getActivity(userId);
     }
 
     @PutMapping("/updateUser/{userId}")
