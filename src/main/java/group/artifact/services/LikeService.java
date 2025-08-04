@@ -11,11 +11,13 @@ import group.artifact.entities.Post;
 import group.artifact.dto.LikeResponse;
 import group.artifact.dto.LikeCreateRequest;
 import group.artifact.repository.LikeRepository;
+import group.artifact.repository.PostRepository;
 
 @Service
 public class LikeService {
-
     LikeRepository likeRepository;
+    PostRepository postRepository;
+
     UserService userService;
     PostService postService;
 
@@ -42,10 +44,16 @@ public class LikeService {
         return likeRepository.findById(LikeId).orElse(null);
     }
 
-    public Like createOneLike(LikeCreateRequest request) {
+    public Like likeThePost(LikeCreateRequest request) {
         User user = userService.getUser(request.getUserId());
         Post post = postService.getPost(request.getPostId());
+        Like like = likeRepository.findByUserIdAndPostId(user.getId(), post.getId());
+
+        
         if (user != null && post != null) {
+            post.setLikeCounts(post.getLikeCounts() + 1);
+            postService.updatePost(post.getId(), post);
+
             Like likeToSave = new Like();
             likeToSave.setPost(post);
             likeToSave.setUser(user);

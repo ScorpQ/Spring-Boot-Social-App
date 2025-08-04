@@ -51,12 +51,13 @@ public class PostService {
         return postRepository.save(newPost);
     }
 
-    public Post updatePost(String postId, PostCreateRequest createPost) {
+    public Post updatePost(String postId, Post updatedPost) {
         Optional<Post> targetPost = postRepository.findById(postId);
         if (targetPost.isPresent()) {
             Post post = targetPost.get();
-            post.setText(createPost.getText());
-            post.setTitle(createPost.getTitle());
+            post.setText(updatedPost.getText());
+            post.setTitle(updatedPost.getTitle());
+            post.setLikeCounts(updatedPost.getLikeCounts());
             return postRepository.save(post);
         }
         return null;
