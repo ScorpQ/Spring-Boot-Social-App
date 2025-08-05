@@ -15,7 +15,6 @@ import group.artifact.entities.Comment;
 import group.artifact.services.CommentService;
 
 @RestController
-// @RestController
 public class CommentController {
 
     public CommentService commentService;

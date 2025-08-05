@@ -41,7 +41,7 @@ public class PostController {
     }
 
     @PutMapping("/updatePost")
-    public Post updatePost(@RequestParam("postId") String postId, @RequestBody PostCreateRequest updatePost) {
+    public Post updatePost(@RequestParam("postId") String postId, @RequestBody Post updatePost) {
         return postService.updatePost(postId, updatePost);
     }
 }

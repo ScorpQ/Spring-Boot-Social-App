@@ -45,8 +45,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/activity")
-    public List<Post> getActivity(@RequestParam Long userId) {
+    @GetMapping("/userActivity")
+    public List<Object> getActivity(@RequestParam Long userId) {
         return userService.getActivity(userId);
     }
 
