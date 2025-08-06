@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.events.CommentEvent;
 
 import group.artifact.entities.User;
 import group.artifact.entities.Post;
-import group.artifact.dto.CommentCreateRequest;
 import group.artifact.entities.Comment;
+import group.artifact.dto.CommentCreateRequest;
 import group.artifact.repository.CommentRepository;
 
 @Service

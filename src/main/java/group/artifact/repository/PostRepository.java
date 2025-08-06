@@ -14,7 +14,7 @@ public interface PostRepository extends JpaRepository<Post, String> {
 
     List<Post> findByUserId(Long id);
 
-    @Query("SELECT text, title, likeCount FROM Post P WHERE P.user.id = ?1")
+    @Query("SELECT P FROM Post P WHERE P.user.id = ?1")
     List<Post> findTopByUserId(Long id);
 
     @Query("SELECT text, title, likeCount FROM Post P WHERE P.user.id = ?1")
