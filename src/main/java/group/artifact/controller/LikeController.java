@@ -1,6 +1,7 @@
 package group.artifact.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class LikeController {
         this.likeService = likeService;
     }
 
-    @GetMapping("/likes")
+    @PutMapping("/likesThePost")
     public Like likeThePost(@RequestBody LikeCreateRequest likeCreateRequest) {
         return likeService.likeThePost(likeCreateRequest);
     }

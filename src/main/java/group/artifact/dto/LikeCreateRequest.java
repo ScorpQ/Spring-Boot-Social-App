@@ -2,17 +2,8 @@ package group.artifact.dto;
 
 public class LikeCreateRequest {
 
-    String id;
     Long userId;
-    String PostId;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    String postId;
 
     public Long getUserId() {
         return userId;
@@ -23,10 +14,10 @@ public class LikeCreateRequest {
     }
 
     public String getPostId() {
-        return PostId;
+        return postId;
     }
 
     public void setPostId(String postId) {
-        this.PostId = postId;
+        this.postId = postId;
     }
 }
