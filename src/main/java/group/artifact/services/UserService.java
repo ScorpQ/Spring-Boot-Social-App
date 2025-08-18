@@ -59,18 +59,12 @@ public class UserService {
         Optional<User> targetUser = userRepository.findById(userId);
         if(targetUser.isPresent()) {
             List<Post> posts = postRepository.findTopByUserId(userId, Sort.by("createDate").descending());
-            // List<Comment> comment = commentRepository.findTopByPostId(postIds, Sort.by("createDate").descending());
-            if (!posts.isEmpty()) {  // Posts dolu ise devam et
-                List<String> postIds = posts.stream().map(Post::getId).collect(Collectors.toList());
-                List<Comment> comments = commentRepository.findUserCommentsByPostId(postIds, Sort.by("createDate").descending());
-                //List<Like> likes = likeRepository.(postIds, Sort.by("createDate").descending());
-                List<Object> result = new ArrayList<>();
-                result.addAll(comments);
-                result.addAll(posts);
-                return result;
-            }
-            
-            return null;
+            List<Comment> comments = commentRepository.findUserCommentsByPostId(userId, Sort.by("createDate").descending());
+            //List<Like> likes = likeRepository.(postIds, Sort.by("createDate").descending());
+            List<Object> result = new ArrayList<>();
+            result.addAll(comments);
+            result.addAll(posts);
+            return result;
         }
         return null;
     }
