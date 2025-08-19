@@ -17,7 +17,6 @@ public class PostResponse {
         this.userName = entity.getUser().getName();
         this.title = entity.getTitle();
         this.text = entity.getText();
-        this.likeCount = entity.getLikeCounts();
     }
 
     public String getId() {

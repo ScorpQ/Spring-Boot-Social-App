@@ -1,6 +1,7 @@
 package group.artifact.entities;
 
 
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -36,12 +37,15 @@ public class Post {
     @Column(columnDefinition = "text")
     String text;
 
-    Long likeCount;
+    // default value is 0
+    Long likeCount = 0L;
+    
     String title;
 
     @CreatedDate
     private Long createDate;
 
+    
     public String getId() {
         return id;
     }
@@ -76,6 +80,10 @@ public class Post {
 
     public Long getLikeCounts() {
         return likeCount;
+    }
+
+    public void setLikeCounts(Long likeCount) {
+        this.likeCount = likeCount;
     }
 
     public Long getCreateDate() {
