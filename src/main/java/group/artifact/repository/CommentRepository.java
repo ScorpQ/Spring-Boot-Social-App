@@ -16,6 +16,6 @@ public interface CommentRepository extends JpaRepository<Comment, String> {
 
     List<Comment> findByPostId(String postId);
 
-   @Query("SELECT C FROM Comment C WHERE C.post.id IN (?1)")
-    List<Comment> findUserCommentsByPostId(List<String> postIds, Sort sort);
+   @Query("SELECT C FROM Comment C WHERE C.user.id IN (?1)")
+    List<Comment> findUserCommentsByPostId(Long userId, Sort sort);
 }

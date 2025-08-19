@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import group.artifact.dto.PostCreateRequest;
 import group.artifact.dto.PostResponse;
 import group.artifact.entities.Post;
+import group.artifact.repository.LikeRepository;
 import group.artifact.repository.PostRepository;
 import group.artifact.entities.User;
 

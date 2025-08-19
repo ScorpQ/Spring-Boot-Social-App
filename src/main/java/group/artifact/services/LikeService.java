@@ -47,9 +47,12 @@ public class LikeService {
     public Like likeThePost(LikeCreateRequest request) {
         User user = userService.getUser(request.getUserId());
         Post post = postService.getPost(request.getPostId());
-        Like like = likeRepository.findByUserIdAndPostId(user.getId(), post.getId());
+        List<Like> like = likeRepository.findByUserIdAndPostId(user.getId(), post.getId());
 
-        
+        if (like.size() > 0) {
+            return null;
+        }
+
         if (user != null && post != null) {
             post.setLikeCounts(post.getLikeCounts() + 1);
             postService.updatePost(post.getId(), post);

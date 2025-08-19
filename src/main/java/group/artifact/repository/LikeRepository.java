@@ -2,8 +2,6 @@ package group.artifact.repository;
 
 import java.util.List;
 import group.artifact.entities.Like;
-import group.artifact.entities.User;
-import group.artifact.entities.Post;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
