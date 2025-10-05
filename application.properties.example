@@ -1,0 +1,20 @@
+# Spring Boot Social App - Example Configuration
+# Copy this file to application.properties and update the values (i know there is not value, just for the sake of it)
+
+# Application
+spring.application.name=artifact
+
+# Database Configuration (Development)
+spring.datasource.url=jdbc:mysql://localhost:3307/social-media
+spring.datasource.username=mysql-java
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.open-in-view=false
+logging.level.org.hibernate=DEBUG
+questapp.app.secret=questApp
+questapp.app.expires-in=604800
