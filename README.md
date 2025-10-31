@@ -1,5 +1,7 @@
 # Spring-Boot-Social-App
 
+
+> **Not:** This project contains technologies I use for learning Java. You can find more complex projects in my repository.
 A social media-like API project built with Spring Boot. To test the project, you can hit the endpoints directly. You can find a ready-to-use Postman collection in the root path.
 
 ## Features
